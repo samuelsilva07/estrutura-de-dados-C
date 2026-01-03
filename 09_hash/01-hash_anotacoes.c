@@ -5,8 +5,6 @@
 #define FATORMULT 0.62457513781
 // #define FATORDIVISAO 0x7FFFFFFF
 
-/* https://youtube.com/playlist?list=PL8iN9FQ7_jt7GZiYfxGIb7sZJOQhw3Xr7&si=jUXMDvFsOwwiImVA */
-
 typedef struct _hash_ {
     int quantidade;
     int tamanho;

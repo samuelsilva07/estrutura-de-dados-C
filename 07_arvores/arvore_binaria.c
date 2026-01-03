@@ -1,60 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct arv {
-    char info;
-    struct arv* esq;
-    struct arv* dir;
-} ARV;
-
-int arvPertence(char valor, ARV* arvore) {
-    if (arvore == NULL) return 0;
-    else return arvore->info == valor || arvPertence(valor, arvore->esq) || arvPertence(valor, arvore->esq);
-}
-
-void arvImprime(ARV* arvore) {
-    if(arvore != NULL) {
-        printf("<");
-        printf("%c ", arvore->info);
-        arvImprime(arvore->esq);
-        arvImprime(arvore->dir);
-        printf(">");
-    }
-}
-
-ARV* arvLibera(ARV* arvore) {
-    if (arvore != NULL) {
-        arvLibera(arvore->esq);
-        arvLibera(arvore->esq);
-        free(arvore);
-    }
-    return NULL;
-}
-
-ARV* arvCria(char valor, ARV* arvEsq, ARV* arvDir) {
-    ARV* p = (ARV*) malloc(sizeof(ARV));
-    p->info = valor;
-    p->esq = arvEsq;
-    p->dir = arvDir;
-    return p;
-}
-
-ARV* arvCriaVazia() {
-    return NULL;
-}
+#include "arvore.h"
 
 int main () {
     ARV* a = arvCriaVazia();
-    a = arvCria('a', arvCriaVazia(), arvCriaVazia());
+    a = arvCriaNo('a', arvCriaVazia(), arvCriaVazia());
     arvImprime(a);
     printf("\n");
-    a->esq = arvCria('b', arvCria('d', arvCriaVazia(), arvCriaVazia()), arvCria('e', arvCriaVazia(),arvCriaVazia()));
-    a->dir = arvCria('c', arvCriaVazia(), arvCriaVazia());
+    a->esq = arvCriaNo('b', arvCriaNo('d', arvCriaVazia(), arvCriaVazia()), arvCriaNo('e', arvCriaVazia(),arvCriaVazia()));
+    a->dir = arvCriaNo('c', arvCriaVazia(), arvCriaVazia());
     arvImprime(a);
     printf("\n");
-    a->dir->esq = arvCria('f', arvCria('g', arvCriaVazia(), arvCriaVazia()), arvCria('h',arvCriaVazia(),arvCriaVazia())); 
+    a->dir->esq = arvCriaNo('f', arvCriaNo('g', arvCriaVazia(), arvCriaVazia()), arvCriaNo('h',arvCriaVazia(),arvCriaVazia())); 
     arvImprime(a);
     printf("\n");
+    printf("Altura da arvore = %d\n", arvAltura(a));
     a = arvLibera(a);
     printf("Arvore liberada!\n");
     exit(EXIT_SUCCESS);

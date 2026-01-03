@@ -20,7 +20,7 @@ void heapRemove(int* heap, int* tamanho) {
     int valor = heap[ultimo];
     int k = 0; 
     while (2*k <= ultimo - 1 && (valor > heap[2*k] || valor > heap[2*k + 1])) {
-        if (heap[2*k] > heap[2*k + 1]) {
+        if (heap[2*k] < heap[2*k + 1]) {
             heap[k] = heap[2*k];
             k = 2*k;
         }
@@ -29,16 +29,16 @@ void heapRemove(int* heap, int* tamanho) {
             k = 2*k + 1;
         }
     }
-    (*tamanho)--;
     heap[k] = valor; 
+    (*tamanho)--;
 }
 
 void heapInsere(int* heap, int* tamanho, int valor) {
     int k = (*tamanho);
-    (*tamanho)++;
     while (divisaoInteira(k, 2) && valor < heap[divisaoInteira(k, 2)]) {
         heap[k] = heap[divisaoInteira(k, 2)];
         k = divisaoInteira(k, 2);
     }
     heap[k] = valor; 
+    (*tamanho)++;
 }

@@ -9,7 +9,7 @@ void imprime (int tam, int* vet) {
 
 void intercala(int inicio, int meio, int fim, int* vet) {
     int i = inicio, j = meio, k = 0;
-    int* vetTemp = malloc((fim - inicio)*sizeof(int));
+    int* vetTemp = (int*) malloc((fim - inicio)*sizeof(int));
 
     while (i < meio && j < fim) {
         if (vet[i] <= vet[j]) vetTemp[k++] = vet[i++];

@@ -36,7 +36,7 @@ ARV* arvLibera(ARV* arvore) {
     return NULL;
 }
 
-ARV* arvCria (char valor, ARV* esq, ARV* dir) {
+ARV* arvCriaNo (char valor, ARV* esq, ARV* dir) {
     ARV* no = (ARV*) malloc(sizeof(ARV));
     no->info = valor;
     no->esq = esq;
@@ -44,18 +44,18 @@ ARV* arvCria (char valor, ARV* esq, ARV* dir) {
     return no;
 }
 
-ARV* criaVazia() {
+ARV* arvCriaVazia() {
     return NULL;
 }
 
 int main () {
-    ARV* arvore = criaVazia();
+    ARV* arvore = arvCriaVazia();
     /* utilização das FUNÇÕES para criar os ramos (TIPO ARV!!!)*/
-    arvore = arvCria('a', criaVazia(), criaVazia());
+    arvore = arvCriaNo('a', arvCriaVazia(), arvCriaVazia());
     arvImprime(arvore);
     printf("\n");
-    arvore->esq = arvCria('b', criaVazia(), arvCria('d', criaVazia(), criaVazia()));
-    arvore->dir = arvCria('c', arvCria('e', criaVazia(), criaVazia()), arvCria('f', criaVazia(), criaVazia()));
+    arvore->esq = arvCriaNo('b', arvCriaVazia(), arvCriaNo('d', arvCriaVazia(), arvCriaVazia()));
+    arvore->dir = arvCriaNo('c', arvCriaNo('e', arvCriaVazia(), arvCriaVazia()), arvCriaNo('f', arvCriaVazia(), arvCriaVazia()));
     arvImprime(arvore);
     arvLibera(arvore);
     printf("Arvore liberada!\n");
