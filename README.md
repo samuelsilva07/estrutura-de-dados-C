@@ -40,6 +40,6 @@ gcc nome_do_arquivo.c -o nome_do_arquivo
 ./"nome_do_arquivo"
 ```
 
-E pronto! O código será executado.
+E pronto! O código será executado perfeitamente.
 
 ### Obrigado por visitar esse repositório!!! 😀
