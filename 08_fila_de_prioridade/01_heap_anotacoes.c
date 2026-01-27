@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int divisaoInteira(int num1, int num2) {
-    return (int) (num1 / num2);
+int divInt(int num1, int num2) {
+    return (int) num1 / num2;
+}
+
+void bolha (int* vet, int i) {  
+    int temp = vet[i];
+    vet[i] = vet[i + 1];
+    vet[i + 1] = temp;
 }
 
 void heapImprime(int* heap, int tamanho) {
-    printf("\nHeap atual: [");
+    printf("\n[");
     for (int i = 0; i < tamanho; i++) {
         printf("%d, ", heap[i]);
     }
@@ -17,38 +23,37 @@ void heapRemove(int* heap, int* tamanho) {
     // remoção do primeiro elemento (possui o maior índice)
     int ultimo = (*tamanho) - 1;
     int valor = heap[ultimo]; // valor do último elemento da heap
-    int k = 1; // começa no topo da heap (elemento que será removido)
-
-    // enquanto não chegar no final da heap e o último elemento for menor que os filhos, ocorre a troca de valores
-    while (2*k <= ultimo && (valor > heap[2*k] || valor > heap[2*k + 1])) {
+    int k = 0; // começa no topo da heap (elemento que será removido)
+    // enquanto não chegar no final da heap e o último elemento for menor do que os comparados, ocorre a troca de valores
+    while ((2*k < ultimo) && (valor < heap[2*k + 1] || valor < heap[2*k + 2])) {
         // inserção do lado esquerdo
-        if (heap[2*k] > heap[2*k + 1]) {
-            heap[k] = heap[2*k];
-            k = 2*k;
-        }
-        // inserção do lado direito
-        else {
+        if (heap[2*k + 1] > heap[2*k + 2]) {
             heap[k] = heap[2*k + 1];
             k = 2*k + 1;
         }
+        // inserção do lado direito
+        else {
+            heap[k] = heap[2*k + 2];
+            k = 2*k + 2;
+        }
     }
     heap[k] = valor; // elemento é realocado na posição correta
-    (*tamanho)--;
+    --(*tamanho);  
 }
 
 void heapInsere(int* heap, int* tamanho, int valor) {
-    int k = (*tamanho) ; // k recebe o índice do sucessor do último elemento (que é o tamanho atual da heap)
-    // se o elemento for maior do que seu pai (índice k%2), troca os elementos até encontrar a posição correta para o novo elemento
-    while (divisaoInteira(k, 2) && (valor < heap[divisaoInteira(k, 2)])) {
-        heap[k] = heap[divisaoInteira(k, 2)];
-        k = divisaoInteira(k, 2);
+    (*tamanho)++; // tamanho da heap aumenta em uma unidade
+    int k = (*tamanho) - 1; // k recebe o índice do último elemento 
+    // se o elemento for maior do que seu pai (índice k/2), troca os elementos até encontrar a posição correta para o novo elemento
+    while (k > 0 && (valor > heap[divInt(k, 2)] )) {
+        heap[k] = heap[divInt(k, 2)];
+        k = divInt(k, 2);
     }
     heap[k] = valor; // elemento é inserido na posição correta
-    (*tamanho)++;
 }
 
 int main () {
-    int heap[] = {0};
+    int heap[] = {};
     int tamanho = 0;
     heapInsere(heap, &tamanho, 1);
     heapInsere(heap, &tamanho, 5);
@@ -63,8 +68,10 @@ int main () {
     heapImprime(heap, tamanho);
 
     heapRemove(heap, &tamanho);
-    heapRemove(heap, &tamanho);
-
     heapImprime(heap, tamanho);
+
+    heapRemove(heap, &tamanho);
+    heapImprime(heap, tamanho);
+    
     exit(EXIT_SUCCESS);
 }
