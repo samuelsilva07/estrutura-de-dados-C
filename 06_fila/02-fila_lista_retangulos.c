@@ -20,7 +20,7 @@ typedef struct fila {
     RET* fim;
 } FILA;
 
-void liberaFila(FILA* filaRet) {
+void filaLibera(FILA* filaRet) {
     RET* aux = filaRet->inicio;
     while(aux != NULL) {
         RET* temp = aux->prox;
@@ -31,11 +31,11 @@ void liberaFila(FILA* filaRet) {
     free(filaRet);
 }
 
-static float areaRetangulo(float base, float altura) {
+float areaRetangulo(float base, float altura) {
     return base * altura;
 }
 
-void imprimeFila(FILA* filaRet) {
+void filaImprime(FILA* filaRet) {
     RET* aux;
     int i = 1;
     for (aux = filaRet->inicio; aux != NULL; aux = aux->prox){
@@ -59,7 +59,7 @@ void alocaRetangulo(FILA* filaRet, float base, float altura) {
     filaRet->fim = ret;
 }
 
-FILA* criaFila() {
+FILA* filaCria() {
     FILA* aux = (FILA*) malloc(sizeof(FILA));
     aux->inicio = aux->fim = NULL;
     return aux;
@@ -71,13 +71,13 @@ int main (void) {
     printf("Digite a quantidade de retangulos para adicionar a fila: ");
     scanf("%d", &quantidade);
     
-    FILA* filaRet = criaFila();
+    FILA* filaRet = filaCria();
     for (int i = 0; i < quantidade; i++) {
         printf("Digite a base e a altura do %do retangulo:\n", i+1);
         scanf("%f %f", &base, &altura);
         alocaRetangulo(filaRet, base, altura);
     }
-    imprimeFila(filaRet);
-    liberaFila(filaRet);
+    filaImprime(filaRet);
+    filaLibera(filaRet);
     return 0;
 }
