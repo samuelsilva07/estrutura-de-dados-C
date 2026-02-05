@@ -14,7 +14,7 @@ int main () {
         filaImprime(filaBanco);
         printf("\nI - Inserir cliente na fila\nA - Atender cliente da fila\nS - Sair\n");
         printf("Digite as operacoes que serao realizadas (MAX = %d): ", MAX);
-        fgets(operacao, 40, stdin);
+        scanf("%s", operacao);
         for (int i = 0; operacao[i] != '\0'; i++) {
             if (operacao[i] == 'S' || operacao[i] == 's') OK = 0;
             else if (operacao[i] == 'I' || operacao[i] == 'i') {
@@ -25,8 +25,8 @@ int main () {
             else if (operacao[i] == 'A' || operacao[i] == 'a') {
                 if (filaBanco == NULL) printf("A fila está vazia.\n");
                 else {
-                filaRemove(filaBanco);
-                atendidos++;
+                    filaRemove(filaBanco);
+                    atendidos++;
                 }
             }
             else printf("Caractere invalido, tente novamente.\n");

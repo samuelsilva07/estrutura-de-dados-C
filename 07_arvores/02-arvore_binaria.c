@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "arvore.h"
+#include "arvore.c"
 
 int main () {
     ARV* a = arvCriaVazia();

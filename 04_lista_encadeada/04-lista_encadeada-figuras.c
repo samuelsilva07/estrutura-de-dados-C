@@ -9,7 +9,7 @@
      - Escolha o tipo da figura que será adicionada
      - Informe as dimensões da figura
 
-    Ao finalizar a coleta de informações, o programa imprime as figuras na tela (a partir da ultima figura informada até a primeira, pois a implementação foi realizada com uma lista encadeada)
+    Ao finalizar a coleta de informações, o programa imprime as figuras na tela (a partir da ultima figura informada até a primeira - a implementação foi realizada com uma lista encadeada!)
 
 */
 
@@ -28,7 +28,8 @@ typedef struct triangulo {
 } TRIANGULO;
 
 typedef struct lista {
-    void* info;
+    void* info;     
+    // a utilização do tipo void* no struct é fundamental nesse programa, pois assim a lista pode armazenar informações de qualquer figura - necesitando apenas de uma boa manipulação e conversão de tipos
     char tipo[4];
     struct lista* prox;
 } LISTA;
