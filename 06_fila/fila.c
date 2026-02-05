@@ -4,12 +4,12 @@
 
 // biblioteca com as funções para a manutenção de filas
 
-typedef struct elemento {
+typedef struct Elemento {
     int info;
     struct elemento* prox;
 } ELEMENTO;
 
-typedef struct fila {
+typedef struct Fila {
     ELEMENTO* inicio;
     ELEMENTO* fim;
 } FILA;

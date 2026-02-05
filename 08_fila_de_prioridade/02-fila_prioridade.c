@@ -1,7 +1,16 @@
 #include <stdio.h>
 #include "heap.c"
 
-// fila de hospital fictício, em que pedimos a prioridade do atendimento
+/*
+    Esse programa simula o sistema de uma clínica fictícia, que atende os seus pacientes de acordo com o seu nível de urgência.
+    Aqui, foram utilizados:
+
+        - um struct PACIENTE, que contém os dados pessoais da pessoa;
+        - uma função menu(), em que se encontra a tela inicial do sistema;
+        - as funções que adicionam pacientes a fila, removem pacientes da fila e mostram a fila atual na tela;
+        - a biblioteca heap.h, que implementa uma max-heap - fundamental para o atendimento baseado na urgência do paciente. 
+
+*/
 
 typedef struct Paciente {
     int idade;      // Idade do paciente
@@ -95,11 +104,3 @@ int main () {
     menu();
     return 0;
 }
-
-/* PROBLEMAS
-
-    - adição de mais de 2 elementos
-    - impressão de mais de 1 elemento
-    - remoção de elementos
-    
-*/
