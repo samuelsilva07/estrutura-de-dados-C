@@ -7,10 +7,12 @@ int divInt(int num1, int num2) {
     return (int) num1 / num2;
 }
 
-void bolha (int* vet, int i) {  
-    int temp = vet[i];
-    vet[i] = vet[i + 1];
-    vet[i + 1] = temp;
+int heapVazia(int quantidade) {
+    return quantidade == 0;
+}
+
+int heapCheia(int quantidade) {
+    return quantidade >= TAMANHO_MAX;
 }
 
 void heapImprime(int* heap, int quantidade) {
