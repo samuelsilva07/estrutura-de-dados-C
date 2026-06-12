@@ -15,7 +15,6 @@ void listaLibera(LISTA* lista) {  // Libera a memória utilizada para alocar a l
         aux = temp;   // esta ação faz com que a verificação de while seja feita no elemento atual                
     }
     // função chega ao fim quando chega ao último elemento (NULL)
-    printf("Memoria liberada!");
 }
 
 void listaImprimeCiclo(LISTA* lista) {   // Imprime uma lista encadeada com ciclos
@@ -29,15 +28,17 @@ void listaImprimeCiclo(LISTA* lista) {   // Imprime uma lista encadeada com cicl
 
 }
 
-int listaVerificaCiclo(LISTA* lista) {
-    LISTA* aux = lista;
-    LISTA* ant = lista;
+int listaVerificaCiclo(LISTA* lista) {  // Verifica se a lista encadeada é um ciclo ou não 
+    LISTA* ant = lista;             // variável com o elemento inicial
+    LISTA* aux = lista->prox;       // variável com o elemento seguinte
     do {
-        aux = aux->prox->prox;
-        if (aux == ant) return 1;
-        ant = ant->prox;
-    } while(aux != NULL);
-    return 0;
+        ant = ant->prox;            // avança um elemento 
+        aux = aux->prox->prox;      // avança dois elementos
+        
+        if (aux == ant) return 1;   // verifica se eles são iguais
+    } while(aux != NULL);           // se esta variável for nula, significa que o ciclo não existe
+    
+    return 0;                       // retorna 0 (falso)
 }
 
 LISTA* listaCriarCiclo(LISTA* lista) {     // Forma um ciclo na lista encadeada
@@ -122,6 +123,5 @@ LISTA* listaInsere(LISTA* lista, int n) {     // Insere um elemento na lista enc
 }
 
 LISTA* listaCria () {   // Cria uma lista encadeada vazia
-    printf("Uma nova lista encadeada foi criada!\n");
     return NULL;
 }

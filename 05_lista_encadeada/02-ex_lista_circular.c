@@ -10,6 +10,19 @@ int main () {
         scanf("%d", &num);
         lista_ciclo = listaInsere(lista_ciclo, num);
     }
+
+    // Lista sem ciclo
+
+    if (listaVerificaCiclo(lista_ciclo)) {
+        printf("Lista ciclo: ");
+        listaImprimeCiclo(lista_ciclo); 
+    } else {
+        printf("Lista encadeada: ");
+        listaImprime(lista_ciclo);
+    }
+
+    // lista com ciclo
+    
     lista_ciclo = listaCriarCiclo(lista_ciclo);
     if (listaVerificaCiclo(lista_ciclo)) {
         printf("Lista ciclo: ");

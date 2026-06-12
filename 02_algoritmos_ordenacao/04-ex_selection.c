@@ -1,23 +1,10 @@
 #include <stdio.h>
+#include "ordenacao.c"
 
 void imprime (int tam, int* vet) {
     for (int i = 0; i < tam; i++) 
         printf("%d ", vet[i]);
     printf("\n");
-}
-
-void selectionSort(int tam, int* vet) {
-    int menor; // índice do menor elemento
-    for (int i = 0; i < tam; i++) {
-        menor = i; 
-        for (int j = i + 1; j < tam; j++)
-            if (vet[j] < vet[menor]) menor = j;
-        if (menor != i){
-            int temp = vet[i];
-            vet[i] = vet[menor];
-            vet[menor] = temp;
-        }
-    }
 }
 
 int main (void) {

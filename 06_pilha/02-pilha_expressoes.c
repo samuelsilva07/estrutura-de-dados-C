@@ -13,6 +13,7 @@ char fecho(char c) {
     if (c == '}') return '{';   
     else if (c == ']') return '[';
     else if (c == ')') return '(';
+    return NULL;
 }
 
 int verificaSinal(char c) {
@@ -24,9 +25,9 @@ int verificaSinal(char c) {
 int verificaExpressao(char* exp) {
     PILHA* pilha = pilhaCria();
     for (int i = 0; exp[i] != '\0'; i++) {
-        if (verificaSinal(exp[i]) == 1) push(pilha, exp[i]);
+        if (verificaSinal(exp[i]) == 1) pilhaPush(pilha, exp[i]);
         if (verificaSinal(exp[i]) == -1) {
-            if (pilha->topo == NULL || pop(pilha) != fecho(exp[i])){
+            if (pilha->topo == NULL || pilhaPop(pilha) != fecho(exp[i])){
                 pilhaLibera(pilha);
                 return 0;
             }
@@ -41,7 +42,7 @@ int main () {
     char expressao[101];
     printf("Digite uma expressao matematica: ");
     fgets(expressao, 100, stdin);
-    if (verificaExpressao(expressao)) printf("A expressao esta correta");
-    else printf("A expressao esta incorreta");
+    if (verificaExpressao(expressao)) printf("A expressao esta correta.\n");
+    else printf("A expressao esta incorreta.\n");
     exit(EXIT_SUCCESS);
 }

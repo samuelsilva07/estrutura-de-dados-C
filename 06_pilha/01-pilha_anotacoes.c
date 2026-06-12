@@ -1,67 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct elemento {
-    int info;
-    struct elemento* prox;
-} ELEMENTO;
-
-typedef struct pilha {
-    ELEMENTO* topo;
-} PILHA;
-
-void liberaPilha(PILHA* pilha) {
-    ELEMENTO* e = pilha->topo;
-    while(e != NULL) {
-        ELEMENTO* aux = e->prox;
-        free(e);
-        e = aux;
-    }
-    printf("Pilha liberada!\n");
-}
-
-void imprimePilha(PILHA* pilha) {
-    ELEMENTO* e = (ELEMENTO*) malloc(sizeof(ELEMENTO));
-    for (e = pilha->topo; e != NULL; e = e->prox)
-        printf("%d ", e->info);
-    printf("\n");
-}
-
-int pop(PILHA* pilha) {
-    ELEMENTO* temp = (ELEMENTO*) malloc(sizeof(ELEMENTO));
-    int valor;
-    temp = pilha->topo;         // variável temp recebe o elemento do topo
-    valor = temp->info;         // valor recebe o dado de retorno
-
-    pilha->topo = temp->prox;   // topo da pilha é reajustado 
-    free(temp);
-    return valor;
-}
-
-void push(PILHA* pilha, int n) {
-    ELEMENTO* e = (ELEMENTO*) malloc(sizeof(ELEMENTO));
-    e->info = n;
-    e->prox = pilha->topo;  // adiciona o elemento antes do topo
-    pilha->topo = e;        // novo elemento se torna o topo
-}
-
-PILHA* criaPilha() {
-    PILHA* p = (PILHA*) malloc(sizeof(PILHA));
-    p->topo = NULL; // topo da pilha inicia com NULL
-    return p;
-}
+#include "pilha.c"
 
 /* Pilha - LIFO (Last In, First Out)!!! */
 
 int main () {
-    PILHA* p = criaPilha();
-    push(p, 2);
-    push(p, 3);
-    push(p, 4);
-    imprimePilha(p);
-    int valor;
-    valor = pop(p);
-    imprimePilha(p);
-    liberaPilha(p);
+    PILHA* p = pilhaCria();
+    int valor_adicionado;
+    printf("Nova pilha criada!\n");
+    while(1) {
+        printf("\nPilha atual: ");
+        pilhaImprime(p);
+
+        printf("Insira um elemento na pilha: ");
+        if (scanf("%d", &valor_adicionado) != 1) {
+            printf("ERRO: tipo de dado invalido.");
+            return 0;
+        } if (valor_adicionado == 0) {
+            break;
+        }
+
+        pilhaPush(p, valor_adicionado);
+    };
+
+    printf("--------------------------------------\nPilha atual: ");
+    pilhaImprime(p);
+
+    int valor_removido;
+    valor_removido = pilhaPop(p);
+    printf("\nValor removido = %d\n", valor_removido);
+    
+    printf("\nPilha final: ");
+    pilhaImprime(p);
+    
+    pilhaLibera(p);
+    printf("Pilha liberada!\n");
     exit(EXIT_SUCCESS);
 }

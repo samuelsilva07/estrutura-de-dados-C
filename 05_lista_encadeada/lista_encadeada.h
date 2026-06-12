@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef LISTA_ENCADEADA_H
+#define LISTA_ENCADEADA_H
 
 // biblioteca com as funções para a manutenção de listas encadeadas simples
 
@@ -15,3 +15,5 @@ void listaImprime(LISTA* lista);
 LISTA* listaInsereOrdenado(LISTA* lista, int num);
 LISTA* listaInsere(LISTA* lista, int num);
 LISTA* listaCria();
+
+#endif

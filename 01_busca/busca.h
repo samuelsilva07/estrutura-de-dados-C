@@ -1,4 +1,6 @@
-#include <stdio.h>
+#ifndef BUSCA_H
+#define BUSCA_H
+
 #define TAM 10
 #define NAOENCONTRADO -1
 
@@ -7,3 +9,5 @@ int buscaBinaria (int n, int* vet, int tam);
 int buscaBinariaRecursiva(int n, int* vet, int inicio, int fim);
 
 void imprimirVetor(int* vetor, int tam);
+
+#endif
